@@ -13,23 +13,25 @@ class App extends Component {
     ];
   }
   render() {
-    // let newCityList = [...this.cityList];
-    // newCityList = newCityList.filter((cities) => cities.country == "India");
+    var indianLocations = this.cityList.filter((item, index) => {
+      return item.country === "India";
+    });
+    var otherLocations = this.cityList.filter((item, index) => {
+      return item.country !== "India";
+    });
+    var newList = [...indianLocations, ...otherLocations];
     return (
       <div id="main">
         {/* Do not remove the main div */}
-        <ol>
-          {/* {newCityList.map((city, index) => {
-            return <li key={`loaction${index + 1}`}>{city.name}</li>;
-          })} */}
-          {this.cityList
-            .filter((cities) => cities.country == "India")
-            .map((city, index) => (
-              <li key={`location${index + 1}`}>{city.name}</li>
-            ))}
+   <ol>
+          {indianLocations.map((item, index) => (
+            <li key={`location${index + 1}`}>{item.name}</li>
+          ))}
         </ol>
       </div>
-    );
+    )
   }
 }
+
+
 export default App;
